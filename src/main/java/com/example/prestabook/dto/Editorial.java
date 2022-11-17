@@ -1,11 +1,14 @@
 package com.example.prestabook.dto;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -24,6 +27,9 @@ public class Editorial {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@OneToMany
+	@JoinColumn(name="editorial_id")
+	private List<Book> books;
 	
 	//Constructores
 	
