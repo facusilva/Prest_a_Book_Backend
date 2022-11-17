@@ -3,6 +3,7 @@ package com.example.prestabook.dto;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,36 +12,37 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
-@Table(name="editorial")
+@Table(name="drawer")
 
-public class Editorial {
+public class Drawer {
 
 	//Atributos de la entidad Empleado
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String editorial_name;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
+	@JoinColumn(name="id_container")
+	private Container container;
 	
 	@OneToMany
-	@JoinColumn(name="editorial_id")
-	private List<Book> books;
+	@JoinColumn(name="id_drawer")
+	private List<Book> book;
+	
 	
 	//Constructores
 	
-	public Editorial() {
+	public Drawer() {
 		
 	}
 	
-	public Editorial(Long id, String editorial_name, User user) {
+	public Drawer(Long id, Container container) {
 		this.id=id;
-		this.editorial_name=editorial_name;
-		this.user=user;
+		this.container=container;
 	}
 
 	//Setters y getters
@@ -53,28 +55,31 @@ public class Editorial {
 		this.id = id;
 	}
 
-	public String getEditorial_name() {
-		return editorial_name;
+	public Container getContainer() {
+		return container;
 	}
 
-	public void setEditorial_name(String editorial_name) {
-		this.editorial_name = editorial_name;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setContainer(Container container) {
+		this.container = container;
 	}
 	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Book")
+	public List<Drawer> getDrawer() {
+		return drawer;
+	}
+
+	public void setDrawer(List<Drawer> drawer) {
+		this.drawer = drawer;
+	}
 
 	//To string personalizado
 	@Override
 	public String toString() {
-		return "Salas [id = " + id +", editorial name " +editorial_name+ ",user " +user+ " ] ";
+		return "Salas [id = " + id +", container " + container + " ] ";
 	}
+
+	
 
 	
 }
