@@ -39,7 +39,7 @@ FOREIGN KEY (id_container) REFERENCES container(id) ON DELETE CASCADE ON UPDATE 
 );
 
 CREATE TABLE book(
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 ISBN VARCHAR(13) NOT NULL,
 title VARCHAR(40) NOT NULL,
 num_pages INT NOT NULL,
@@ -126,12 +126,12 @@ insert into author (author_name,surname,birth_date,nationality,descr,gender) val
 insert into author (author_name,surname,birth_date,nationality,descr,gender) values('Stephen','King','1965-01-01','USA','Escritor de terror','H');
 insert into author (author_name,surname,birth_date,nationality,descr,gender) values('Juan','Gomez-Jurado','1980-01-01','Espana','Escritor de thriller','H');
 
-insert into wrote (id_book,id_author) values('9999999999999','1');
-insert into wrote (id_book,id_author) values('9888888888888','1');
-insert into wrote (id_book,id_author) values('9777777777777','3');
-insert into wrote (id_book,id_author) values('9666666666666','2');
+insert into wrote (id_book,id_author) values('1','1');
+insert into wrote (id_book,id_author) values('2','1');
+insert into wrote (id_book,id_author) values('3','3');
+insert into wrote (id_book,id_author) values('4','2');
 
-insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('9999999999999','1','2','2022-11-05','2022-11-11');
-insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('9888888888888','2','4','2022-11-04','2022-11-10');
-insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('9777777777777','4','3','2022-11-03','2022-11-07');
-insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('9666666666666','3','1','2022-11-02','2022-11-05');
+insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('1','1','2','2022-11-05','2022-11-11');
+insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('2','2','4','2022-11-04','2022-11-10');
+insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('3','4','3','2022-11-03','2022-11-07');
+insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('4','3','1','2022-11-02','2022-11-05');

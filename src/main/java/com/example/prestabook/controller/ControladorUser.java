@@ -34,7 +34,6 @@ public class ControladorUser {
 		
 	}
 	
-	
 	@GetMapping("/users/{id}")
 	public User leerUser(@PathVariable(name="id") Long id) {
 		
