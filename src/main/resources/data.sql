@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS drawer;
 DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS author;
 DROP TABLE IF EXISTS wrote;
+DROP TABLE IF EXISTS wishes;
 DROP TABLE IF EXISTS loan;
 
 CREATE TABLE users(
@@ -27,7 +28,8 @@ FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE container(
-id INT PRIMARY KEY NOT NULL
+id INT PRIMARY KEY NOT NULL,
+container_name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE drawer(
@@ -37,7 +39,8 @@ FOREIGN KEY (id_container) REFERENCES container(id) ON DELETE CASCADE ON UPDATE 
 );
 
 CREATE TABLE book(
-ISBN VARCHAR(13) PRIMARY KEY NOT NULL,
+id INT NOT NULL PRIMARY KEY,
+ISBN VARCHAR(13) NOT NULL,
 title VARCHAR(40) NOT NULL,
 num_pages INT NOT NULL,
 genre VARCHAR(40),
@@ -60,20 +63,29 @@ gender ENUM('H','M', 'otro')
 );
 
 CREATE TABLE wrote(
-isbn VARCHAR(13) NOT NULL PRIMARY KEY,
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+id_book INT NOT NULL,
 id_author INT NOT NULL,
-FOREIGN KEY (isbn) REFERENCES book(isbn) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (id_book) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (id_author) REFERENCES author(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE wishes(
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+id_book INT NOT NULL,
+id_users INT NOT NULL,
+FOREIGN KEY (id_book) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (id_users) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE loan(
-isbn VARCHAR(13) NOT NULL,
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_book INT NOT NULL,
 id_loaner INT NOT NULL,
 id_loanee INT NOT NULL,
 starting_date DATE NOT NULL,
 end_date DATE,
-PRIMARY KEY(isbn, id_loaner, id_loanee),
-FOREIGN KEY (isbn) REFERENCES book(isbn) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (id_book) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (id_loaner) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (id_loanee) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -83,15 +95,15 @@ FOREIGN KEY (id_loanee) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('albertojilo', 'A123456@','mailinventado1@gmail.com','Alberto','Jimenez','1990-04-30','H');
 insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('facusilva', 'F123456@','mailinventado2@gmail.com','Facundo','Silva','2000-01-01','H');
 insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('carloslafu', 'C123456@','mailinventado3@gmail.com','Carlos','Lafuente','2000-02-02','H');
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('jmarin', 'J123456@','mailinventado4@gmail.com','Jose','Marin','2000-03-03','H');
+insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('josemarin', 'J123456@','mailinventado4@gmail.com','Jose','Marin','2000-03-03','H');
 
 insert into editorial (editorial_name,country,id_user) values('Anaya', 'Espana','1');
 insert into editorial (editorial_name,country,id_user) values('Planeta', 'Espana','2');
 insert into editorial (editorial_name,country,id_user) values('Edelvives', 'Espana','3');
 insert into editorial (editorial_name,country,id_user) values('Rocaeditorial', 'Espana','4');
 
-insert into container (id) values('1');
-insert into container (id) values('2');
+insert into container (id,container_name) values('1','Armario de la A a la K');
+insert into container (id,container_name) values('2','Armario de la L a la Z');
 
 insert into drawer (id,id_container) values('A','1');
 insert into drawer (id,id_container) values('B','1');
@@ -105,16 +117,21 @@ insert into book (ISBN,title,num_pages,genre,id_user,id_editorial,id_drawer) val
 insert into book (ISBN,title,num_pages,genre,id_user,id_editorial,id_drawer) values('9777777777777','Misery','600','Terror','3','2','M');
 insert into book (ISBN,title,num_pages,genre,id_user,id_editorial,id_drawer) values('9666666666666','Loba negra','800','Thriller','4','3','L');
 
+insert into wishes (id_book,id_users) values ('1','1');
+insert into wishes (id_book,id_users) values ('2','4');
+insert into wishes (id_book,id_users) values ('4','3');
+insert into wishes (id_book,id_users) values ('3','2');
+
 insert into author (author_name,surname,birth_date,nationality,descr,gender) values('Patrick','Rothfuss','1975-01-01','USA','Escritor de fantasía','H');
 insert into author (author_name,surname,birth_date,nationality,descr,gender) values('Stephen','King','1965-01-01','USA','Escritor de terror','H');
 insert into author (author_name,surname,birth_date,nationality,descr,gender) values('Juan','Gomez-Jurado','1980-01-01','Espana','Escritor de thriller','H');
 
-insert into wrote (isbn,id_author) values('9999999999999','1');
-insert into wrote (isbn,id_author) values('9888888888888','1');
-insert into wrote (isbn,id_author) values('9777777777777','3');
-insert into wrote (isbn,id_author) values('9666666666666','2');
+insert into wrote (id_book,id_author) values('9999999999999','1');
+insert into wrote (id_book,id_author) values('9888888888888','1');
+insert into wrote (id_book,id_author) values('9777777777777','3');
+insert into wrote (id_book,id_author) values('9666666666666','2');
 
-insert into loan (isbn,id_loaner,id_loanee,starting_date,end_date) values('9999999999999','1','2','2022-11-05','2022-11-11');
-insert into loan (isbn,id_loaner,id_loanee,starting_date,end_date) values('9888888888888','2','4','2022-11-04','2022-11-10');
-insert into loan (isbn,id_loaner,id_loanee,starting_date,end_date) values('9777777777777','4','3','2022-11-03','2022-11-07');
-insert into loan (isbn,id_loaner,id_loanee,starting_date,end_date) values('9666666666666','3','1','2022-11-02','2022-11-05');
+insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('9999999999999','1','2','2022-11-05','2022-11-11');
+insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('9888888888888','2','4','2022-11-04','2022-11-10');
+insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('9777777777777','4','3','2022-11-03','2022-11-07');
+insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('9666666666666','3','1','2022-11-02','2022-11-05');
