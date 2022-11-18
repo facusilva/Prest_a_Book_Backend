@@ -49,31 +49,37 @@ public class User {
     @JoinColumn(name="id_roles")
     private Role role;*/
 	
-	/*@OneToMany
-	@JoinColumn(name="user_id")
-	private List<Books> loanBook;
-	@ManyToMany
+	@OneToMany
+	@JoinColumn(name="id_loaner")
+	private List<Loan> loaner;
 	
-	*/
+	@OneToMany
+	@JoinColumn(name="id_loaner")
+	private List<Loan> loanee;
 	
 	//Constructores
-	
 	public User() {
 		
 	}
-	
-	public User(Long id, String username, String psswd, String email, String real_name, String surname, Date birth_date, String gender) {
-		this.id=id;
-		this.username=username;
-		this.psswd=psswd;
-		this.email=email;
-		this.real_name=real_name;
-		this.surname=surname;
-		this.birth_date=birth_date;
-		this.gender=gender;
+
+	public User(Long id, String username, String psswd, String email, String real_name, String surname, Date birth_date,
+			String gender, List<Editorial> editorial, List<Book> books, List<Wishes> wishes, List<Loan> loaner,
+			List<Loan> loanee) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.psswd = psswd;
+		this.email = email;
+		this.real_name = real_name;
+		this.surname = surname;
+		this.birth_date = birth_date;
+		this.gender = gender;
+		this.editorial = editorial;
+		this.books = books;
+		this.wishes = wishes;
+		this.loaner = loaner;
+		this.loanee = loanee;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -168,12 +174,33 @@ public class User {
 	public void setWishes(List<Wishes> wishes) {
 		this.wishes = wishes;
 	}
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_loaner")
+	public List<Loan> getLoaner() {
+		return loaner;
+	}
+
+	public void setLoaner(List<Loan> loaner) {
+		this.loaner = loaner;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_loanee")
+	public List<Loan> getLoanee() {
+		return loanee;
+	}
+
+	public void setLoanee(List<Loan> loanee) {
+		this.loanee = loanee;
+	}
 
 	//To string personalizado
 	@Override
 	public String toString() {
-		return "Users [id = " + id +", username = " + username +", password" + psswd + ", email " +email+ ", real name " +real_name+ ", surname "
-				+surname+ ", birth date " +birth_date+ ", gender " + gender+ "] ";
-
+		return "User [id=" + id + ", username=" + username + ", psswd=" + psswd + ", email=" + email + ", real_name="
+				+ real_name + ", surname=" + surname + ", birth_date=" + birth_date + ", gender=" + gender
+				+ ", editorial=" + editorial + ", books=" + books + ", wishes=" + wishes + ", loaner=" + loaner
+				+ ", loanee=" + loanee + "]";
 	}
 }

@@ -49,13 +49,18 @@ public class Book {
 	@JoinColumn(name="id_drawer")
 	private Drawer id_drawer;
 	
+	@OneToMany
+	@JoinColumn(name="id_book")
+	private List<Loan> loan;
+	
 	//Constructores
 	
 	public Book() {
 
 	}
 
-	public Book(Long id, String isbn, String title, int num_pages, String genre, Editorial id_editorial, User id_user, List<Wishes> wishes, List<Wrote> wrote, Drawer id_drawer) {
+	public Book(Long id, String isbn, String title, int num_pages, String genre, Editorial id_editorial, User id_user, List<Wishes> wishes, List<Wrote> wrote, 
+			Drawer id_drawer, List<Loan> loan) {
 		this.id = id;
 		this.isbn = isbn;
 		this.title = title;
@@ -66,6 +71,7 @@ public class Book {
 		this.wishes = wishes;
 		this.wrote = wrote;
 		this.id_drawer = id_drawer;
+		this.loan = loan;
 	}
 
 
@@ -143,20 +149,28 @@ public class Book {
 		return wrote;
 	}
 
-
 	public void setWrote(List<Wrote> wrote) {
 		this.wrote = wrote;
 	}
-
 
 	public Drawer getId_drawer() {
 		return id_drawer;
 	}
 
-
 	public void setId_drawer(Drawer id_drawer) {
 		this.id_drawer = id_drawer;
 	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_book")
+	public List<Loan> getLoan() {
+		return loan;
+	}
+
+	public void setLoan(List<Loan> loan) {
+		this.loan = loan;
+	}
+	
 	
 	
 }
