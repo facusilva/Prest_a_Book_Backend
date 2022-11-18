@@ -22,8 +22,7 @@ public class Drawer {
 
 	//Atributos de la entidad Empleado
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 	
 	@ManyToOne
 	@JoinColumn(name="id_container")
@@ -35,23 +34,23 @@ public class Drawer {
 	
 	
 	//Constructores
-	
 	public Drawer() {
 		
 	}
-	
-	public Drawer(Long id, Container container) {
-		this.id=id;
-		this.container=container;
+
+	public Drawer(String id, Container container, List<Book> book) {
+		this.id = id;
+		this.container = container;
+		this.book = book;
 	}
 
-	//Setters y getters
 	
-	public Long getId() {
+	//Setters y getters
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -61,6 +60,16 @@ public class Drawer {
 
 	public void setContainer(Container container) {
 		this.container = container;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_drawer")
+	public List<Book> getBook() {
+		return book;
+	}
+
+	public void setBook(List<Book> book) {
+		this.book = book;
 	}
 
 	//To string personalizado

@@ -44,6 +44,11 @@ public class User {
 	@JoinColumn(name="id_user")
 	private List<Wishes> wishes;
 	
+	
+	/*@ManyToOne
+    @JoinColumn(name="id_roles")
+    private Role role;*/
+	
 	/*@OneToMany
 	@JoinColumn(name="user_id")
 	private List<Books> loanBook;
