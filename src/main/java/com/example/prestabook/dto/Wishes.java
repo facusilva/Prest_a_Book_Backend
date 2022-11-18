@@ -20,7 +20,7 @@ public class Wishes {
 	
 	@ManyToOne
 	@JoinColumn(name="id_user")
-	private Author id_user;
+	private Usuario id_user;
 	
 	@ManyToOne
 	@JoinColumn(name="id_book")
@@ -31,7 +31,7 @@ public class Wishes {
 		
 	}
 
-	public Wishes(Long id, Author id_user, Book id_book) {
+	public Wishes(Long id, Usuario id_user, Book id_book) {
 		this.id = id;
 		this.id_user = id_user;
 		this.id_book = id_book;
@@ -46,11 +46,11 @@ public class Wishes {
 		this.id = id;
 	}
 
-	public Author getId_user() {
+	public Usuario getId_user() {
 		return id_user;
 	}
 
-	public void setId_user(Author id_user) {
+	public void setId_user(Usuario id_user) {
 		this.id_user = id_user;
 	}
 

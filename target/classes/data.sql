@@ -11,12 +11,13 @@ DROP TABLE IF EXISTS loan;
 CREATE TABLE users(
 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 username VARCHAR(60) NOT NULL,
-psswd VARCHAR(40) NOT NULL, 
+psswd VARCHAR(255) NOT NULL, 
 email VARCHAR(60) NOT NULL,
 real_name VARCHAR(60) NOT NULL,
 surname VARCHAR(80),
 birth_date DATE,
-gender ENUM('H','M', 'otro')
+gender ENUM('H','M', 'otro'),
+role varchar(100)
 );
 
 CREATE TABLE editorial(
@@ -92,10 +93,10 @@ FOREIGN KEY (id_loanee) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 
 
 
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('albertojilo', 'A123456@','mailinventado1@gmail.com','Alberto','Jimenez','1990-04-30','H');
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('facusilva', 'F123456@','mailinventado2@gmail.com','Facundo','Silva','2000-01-01','H');
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('carloslafu', 'C123456@','mailinventado3@gmail.com','Carlos','Lafuente','2000-02-02','H');
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('josemarin', 'J123456@','mailinventado4@gmail.com','Jose','Marin','2000-03-03','H');
+insert into users (username,psswd,email,real_name,surname,birth_date,gender, role) values('albertojilo', '$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.','mailinventado1@gmail.com','Alberto','Jimenez','1990-04-30','H', 'admin');
+insert into users (username,psswd,email,real_name,surname,birth_date,gender, role) values('facusilva', '$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.','mailinventado2@gmail.com','Facundo','Silva','2000-01-01','H', 'admin');
+insert into users (username,psswd,email,real_name,surname,birth_date,gender, role) values('carloslafu', '$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.','mailinventado3@gmail.com','Carlos','Lafuente','2000-02-02','H', 'admin');
+insert into users (username,psswd,email,real_name,surname,birth_date,gender, role) values('josemarin', '$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.','mailinventado4@gmail.com','Jose','Marin','2000-03-03','H', 'admin');
 
 insert into editorial (editorial_name,country,id_user) values('Anaya', 'Espana','1');
 insert into editorial (editorial_name,country,id_user) values('Planeta', 'Espana','2');

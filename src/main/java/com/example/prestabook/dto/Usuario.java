@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="users")
 
-public class User {
+public class Usuario {
 
 	//Atributos de la entidad Empleado
 	@Id
@@ -31,6 +31,7 @@ public class User {
 	private String surname;
 	private Date birth_date;
 	private String gender;
+	private String role;
 	
 	@OneToMany
 	@JoinColumn(name="id_user")
@@ -58,13 +59,13 @@ public class User {
 	private List<Loan> loanee;
 	
 	//Constructores
-	public User() {
+	public Usuario() {
 		
 	}
 
-	public User(Long id, String username, String psswd, String email, String real_name, String surname, Date birth_date,
+	public Usuario(Long id, String username, String psswd, String email, String real_name, String surname, Date birth_date,
 			String gender, List<Editorial> editorial, List<Book> books, List<Wishes> wishes, List<Loan> loaner,
-			List<Loan> loanee) {
+			List<Loan> loanee, String role) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -79,6 +80,7 @@ public class User {
 		this.wishes = wishes;
 		this.loaner = loaner;
 		this.loanee = loanee;
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -194,6 +196,14 @@ public class User {
 	public void setLoanee(List<Loan> loanee) {
 		this.loanee = loanee;
 	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	//To string personalizado
 	@Override
@@ -203,4 +213,5 @@ public class User {
 				+ ", editorial=" + editorial + ", books=" + books + ", wishes=" + wishes + ", loaner=" + loaner
 				+ ", loanee=" + loanee + "]";
 	}
+
 }
