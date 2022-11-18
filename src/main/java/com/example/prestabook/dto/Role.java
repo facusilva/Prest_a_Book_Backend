@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,37 +15,35 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-@Table(name="drawer")
+@Table(name="role")
 
-public class Drawer {
+public class Role {
 
 	//Atributos de la entidad Empleado
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name="id_container")
-	private Container container;
+	private String role_name;
 	
 	@OneToMany
-	@JoinColumn(name="id_drawer")
-	private List<Book> book;
+	@JoinColumn(name="id_roles")
+	private List<Role> role;
 	
 	
 	//Constructores
 	
-	public Drawer() {
+	public Role() {
 		
 	}
 	
-	public Drawer(Long id, Container container) {
+	public Role(Long id, String role_name) {
 		this.id=id;
-		this.container=container;
+		this.role_name=role_name;
 	}
 
 	//Setters y getters
 	
+
 	public Long getId() {
 		return id;
 	}
@@ -54,22 +51,37 @@ public class Drawer {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Container getContainer() {
-		return container;
+	
+	public String getRole_name() {
+		return role_name;
 	}
 
-	public void setContainer(Container container) {
-		this.container = container;
+	public void setRole_name(String role_name) {
+		this.role_name = role_name;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Role")
+	public List<Role> getRole() {
+		return role;
+	}
+
+	public void setRole(List<Role> role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
-		return "Drawer [id=" + id + ", container=" + container + ", book=" + book + "]";
+		return "Role [id=" + id + ", role_name=" + role_name + ", role=" + role + "]";
 	}
 
+
 	
+
 	
+
+
+
 
 	
 }

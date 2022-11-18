@@ -19,24 +19,25 @@ public class Wrote {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="author")
-	private Author author;
+	@JoinColumn(name="id_author")
+	private Author id_author;
 	
 	@ManyToOne
-	@JoinColumn(name="book")
-	private Book book;
+	@JoinColumn(name="id_book")
+	private Book id_book;
 	
 	//Constructores
 	public Wrote() {
 		
 	}
 
-	public Wrote(Long id, Author author, Book book) {
+	public Wrote(Long id, Author id_author, Book id_book) {
 		this.id = id;
-		this.author = author;
-		this.book = book;
+		this.id_author = id_author;
+		this.id_book = id_book;
 	}
 
+	//getters y setters
 	public Long getId() {
 		return id;
 	}
@@ -45,28 +46,28 @@ public class Wrote {
 		this.id = id;
 	}
 
-	public Author getAuthor() {
-		return author;
+	public Author getId_author() {
+		return id_author;
 	}
 
-	public void setAuthor(Author author) {
-		this.author = author;
+	public void setId_author(Author id_author) {
+		this.id_author = id_author;
 	}
 
-	public Book getBook() {
-		return book;
+	public Book getId_book() {
+		return id_book;
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
+	public void setId_book(Book id_book) {
+		this.id_book = id_book;
 	}
-
 
 	@Override
 	public String toString() {
-		return "Wrote [id=" + id + ", author=" + author + ", book=" + book + "]";
+		return "Wrote [id=" + id + ", id_author=" + id_author + ", id_book=" + id_book + "]";
 	}
 
+	
 	
 	
 }

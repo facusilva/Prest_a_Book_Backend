@@ -23,7 +23,7 @@ public class Book {
 	//Atributos de la entidad Empleado
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private String isbn;
 	private String title;
 	private int num_pages;
@@ -41,13 +41,26 @@ public class Book {
 	@JoinColumn(name="id_book")
 	private List<Wishes> wishes;
 	
+	@OneToMany
+	@JoinColumn(name="id_book")
+	private List<Wrote> wrote;
+	
+	@ManyToOne
+	@JoinColumn(name="id_drawer")
+	private Drawer id_drawer;
+	
+	@OneToMany
+	@JoinColumn(name="id_book")
+	private List<Loan> loan;
+	
 	//Constructores
 	
 	public Book() {
 
 	}
 
-	public Book(int id, String isbn, String title, int num_pages, String genre, Editorial id_editorial, User id_user) {
+	public Book(Long id, String isbn, String title, int num_pages, String genre, Editorial id_editorial, User id_user, List<Wishes> wishes, List<Wrote> wrote, 
+			Drawer id_drawer, List<Loan> loan) {
 		this.id = id;
 		this.isbn = isbn;
 		this.title = title;
@@ -55,15 +68,20 @@ public class Book {
 		this.genre = genre;
 		this.id_editorial = id_editorial;
 		this.id_user = id_user;
+		this.wishes = wishes;
+		this.wrote = wrote;
+		this.id_drawer = id_drawer;
+		this.loan = loan;
 	}
+
 
 	//Setters y getters
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -124,16 +142,34 @@ public class Book {
 	public void setWishes(List<Wishes> wishes) {
 		this.wishes = wishes;
 	}
-	
-	
-	
 
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_book")
+	public List<Wrote> getWrote() {
+		return wrote;
+	}
 
+	public void setWrote(List<Wrote> wrote) {
+		this.wrote = wrote;
+	}
 
-	
-	
+	public Drawer getId_drawer() {
+		return id_drawer;
+	}
 
-	
+	public void setId_drawer(Drawer id_drawer) {
+		this.id_drawer = id_drawer;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_book")
+	public List<Loan> getLoan() {
+		return loan;
+	}
+
+	public void setLoan(List<Loan> loan) {
+		this.loan = loan;
+	}
 	
 	
 	

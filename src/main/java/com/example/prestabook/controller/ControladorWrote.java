@@ -52,8 +52,8 @@ public class ControladorWrote {
 		
 		wrote_seleccionado= wroteServiceImpl.leerWrote(id);
 
-		wrote_seleccionado.setAuthor(wrote.getAuthor());
-		wrote_seleccionado.setBook(wrote.getBook());
+		wrote_seleccionado.setId_author(wrote.getId_author());
+		wrote_seleccionado.setId_book(wrote.getId_book());
 		
 		wrote_actualizado = wroteServiceImpl.actualizarWrote(wrote_seleccionado);
 		
