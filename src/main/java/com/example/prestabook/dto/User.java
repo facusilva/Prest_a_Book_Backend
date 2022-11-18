@@ -33,14 +33,14 @@ public class User {
 	private String gender;
 	
 	@OneToMany
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="id_user")
 	private List<Editorial> editorial;
 	
-	/*@OneToMany
-	@JoinColumn(name="user_id")
-	private List<Books> hasBook;
-	
 	@OneToMany
+	@JoinColumn(name="id_user")
+	private List<Book> books;
+	
+	/*@OneToMany
 	@JoinColumn(name="user_id")
 	private List<Books> loanBook;
 	@ManyToMany
@@ -131,7 +131,7 @@ public class User {
 	}
 	
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user_id")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_user")
 	public List<Editorial> getEditorial() {
 		return editorial;
 	}
@@ -139,8 +139,16 @@ public class User {
 	public void setEditorial(List<Editorial> editorial) {
 		this.editorial = editorial;
 	}
-
 	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_user")
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 
 	//To string personalizado
 	@Override

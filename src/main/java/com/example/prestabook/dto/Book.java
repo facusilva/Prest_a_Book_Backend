@@ -24,29 +24,31 @@ public class Book {
 	private String genre;
 	
 	@ManyToOne
-	@JoinColumn(name="editorial")
-	private Editorial editorial;
+	@JoinColumn(name="id_editorial")
+	private Editorial id_editorial;
 	
 	@ManyToOne
-	@JoinColumn(name="author")
-	private Author author;
+	@JoinColumn(name="id_user")
+	private User id_user;
 	
 	//Constructores
 	
 	public Book() {
 
 	}
-	
-	public Book(String isbn, String title, int num_pages, String genre, Editorial editorial) {
+
+	public Book(int id, String isbn, String title, int num_pages, String genre, Editorial id_editorial, User id_user) {
+		this.id = id;
 		this.isbn = isbn;
 		this.title = title;
 		this.num_pages = num_pages;
 		this.genre = genre;
-		this.editorial = editorial;
+		this.id_editorial = id_editorial;
+		this.id_user = id_user;
 	}
 
-
 	//Setters y getters
+
 	public int getId() {
 		return id;
 	}
@@ -54,7 +56,7 @@ public class Book {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getIsbn() {
 		return isbn;
 	}
@@ -63,60 +65,51 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-
 	public String getTitle() {
 		return title;
 	}
-
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-
 	public int getNum_pages() {
 		return num_pages;
 	}
-
 
 	public void setNum_pages(int num_pages) {
 		this.num_pages = num_pages;
 	}
 
-
 	public String getGenre() {
 		return genre;
 	}
-
 
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
-
-	public Editorial getEditorial() {
-		return editorial;
+	public Editorial getId_editorial() {
+		return id_editorial;
 	}
 
-	public void setEditorial(Editorial editorial) {
-		this.editorial = editorial;
+	public void setId_editorial(Editorial id_editorial) {
+		this.id_editorial = id_editorial;
+	}
+
+	public User getId_user() {
+		return id_user;
+	}
+
+	public void setId_user(User id_user) {
+		this.id_user = id_user;
 	}
 	
-	public Author getAuthor() {
-		return author;
-	}
+	
 
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
 
-	//Método toString
-	@Override
-	public String toString() {
-		return "Book [isbn=" + isbn + ", title=" + title + ", num_pages=" + num_pages + ", genre=" + genre
-				+ ", editorial=" + editorial + "]";
-	}
 
+	
 	
 
 	
