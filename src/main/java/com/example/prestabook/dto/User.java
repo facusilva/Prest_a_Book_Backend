@@ -40,6 +40,10 @@ public class User {
 	@JoinColumn(name="id_user")
 	private List<Book> books;
 	
+	@OneToMany
+	@JoinColumn(name="id_user")
+	private List<Wishes> wishes;
+	
 	/*@OneToMany
 	@JoinColumn(name="user_id")
 	private List<Books> loanBook;
@@ -148,6 +152,16 @@ public class User {
 
 	public void setBooks(List<Book> books) {
 		this.books = books;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_user")
+	public List<Wishes> getWishes() {
+		return wishes;
+	}
+
+	public void setWishes(List<Wishes> wishes) {
+		this.wishes = wishes;
 	}
 
 	//To string personalizado

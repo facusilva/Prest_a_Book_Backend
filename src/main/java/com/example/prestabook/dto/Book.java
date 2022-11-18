@@ -1,12 +1,18 @@
 package com.example.prestabook.dto;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -30,6 +36,10 @@ public class Book {
 	@ManyToOne
 	@JoinColumn(name="id_user")
 	private User id_user;
+	
+	@OneToMany
+	@JoinColumn(name="id_book")
+	private List<Wishes> wishes;
 	
 	//Constructores
 	
@@ -104,6 +114,17 @@ public class Book {
 	public void setId_user(User id_user) {
 		this.id_user = id_user;
 	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_book")
+	public List<Wishes> getWishes() {
+		return wishes;
+	}
+
+	public void setWishes(List<Wishes> wishes) {
+		this.wishes = wishes;
+	}
+	
 	
 	
 
