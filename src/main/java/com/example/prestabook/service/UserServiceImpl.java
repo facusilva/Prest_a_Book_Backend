@@ -5,34 +5,34 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.prestabook.dao.IUserDAO;
-import com.example.prestabook.dto.User;
+import com.example.prestabook.dao.IUsuarioDAO;
+import com.example.prestabook.dto.Usuario;
 
 @Service
 public class UserServiceImpl implements IUserService{
 	
 	//Utilizamos los metodos de la interface IUserDAO, es como si instanciaramos.
 	@Autowired
-	IUserDAO iUserDAO;
+	IUsuarioDAO iUserDAO;
 	
 	@Override
-	public List<User> listarUsers() {
+	public List<Usuario> listarUsers() {
 		return iUserDAO.findAll();
 	}
 	
 	@Override
-	public User crearUser(User user) {
+	public Usuario crearUser(Usuario user) {
 		return iUserDAO.save(user);
 	}
 
 	@Override
-	public User leerUser(Long id) {
+	public Usuario leerUser(Long id) {
 		return iUserDAO.findById(id).get();
 	}
 
 
 	@Override
-	public User actualizarUser(User user) {
+	public Usuario actualizarUser(Usuario user) {
 		return iUserDAO.save(user);
 	}
 

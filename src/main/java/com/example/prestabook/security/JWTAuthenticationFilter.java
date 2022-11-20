@@ -19,11 +19,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.example.prestabook.dto.User;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.example.prestabook.dto.Usuario;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -39,7 +41,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
 		try {
-			User credenciales = new ObjectMapper().readValue(request.getInputStream(), User.class);
+			Usuario credenciales = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
 
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 					credenciales.getUsername(), credenciales.getPsswd(), new ArrayList<>()));

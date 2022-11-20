@@ -70,15 +70,11 @@ public class Container {
 		this.drawer = drawer;
 	}
 
+	//To string personalizado
 	@Override
 	public String toString() {
-		return "Container [id=" + id + ", container_name=" + container_name + ", drawer=" + drawer + "]";
+		return "Salas [id = " + id +", nombre = " + container_name + " ] ";
 	}
-
-
-	
-
-	
 
 
 

@@ -29,7 +29,7 @@ public class Editorial {
 	
 	@ManyToOne
 	@JoinColumn(name="id_user")
-	private User id_user;
+	private Usuario id_user;
 	
 	@OneToMany
 	@JoinColumn(name="id_editorial")
@@ -41,7 +41,7 @@ public class Editorial {
 		
 	}
 	
-	public Editorial(Long id, String editorial_name, String country, User id_user, List<Book> books) {
+	public Editorial(Long id, String editorial_name, String country, Usuario id_user, List<Book> books) {
 		this.id = id;
 		this.editorial_name = editorial_name;
 		this.country = country;
@@ -75,11 +75,11 @@ public class Editorial {
 		this.country = country;
 	}
 
-	public User getId_user() {
+	public Usuario getId_user() {
 		return id_user;
 	}
 
-	public void setId_user(User id_user) {
+	public void setId_user(Usuario id_user) {
 		this.id_user = id_user;
 	}
 
