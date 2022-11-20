@@ -56,7 +56,8 @@ public class ControladorEditorial {
 		editorial_seleccionado= editorialServiceImpl.leerEditorial(id);
 
 		editorial_seleccionado.setEditorial_name(editorial.getEditorial_name());
-		editorial_seleccionado.setUser(editorial.getUser());
+		editorial_seleccionado.setCountry(editorial.getCountry());
+		editorial_seleccionado.setId_user(editorial.getId_user());
 
 		
 		editorial_actualizado = editorialServiceImpl.actualizarEditorial(editorial_seleccionado);

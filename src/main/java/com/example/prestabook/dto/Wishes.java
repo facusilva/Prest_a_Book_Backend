@@ -9,9 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="wrote")
+@Table(name="wishes")
 
-public class Wrote {
+public class Wishes {
 
 	//Atributos de la entidad Empleado
 	@Id
@@ -19,21 +19,21 @@ public class Wrote {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="id_author")
-	private Author id_author;
+	@JoinColumn(name="id_user")
+	private Usuario id_user;
 	
 	@ManyToOne
 	@JoinColumn(name="id_book")
 	private Book id_book;
 	
 	//Constructores
-	public Wrote() {
+	public Wishes() {
 		
 	}
 
-	public Wrote(Long id, Author id_author, Book id_book) {
+	public Wishes(Long id, Usuario id_user, Book id_book) {
 		this.id = id;
-		this.id_author = id_author;
+		this.id_user = id_user;
 		this.id_book = id_book;
 	}
 
@@ -46,12 +46,12 @@ public class Wrote {
 		this.id = id;
 	}
 
-	public Author getId_author() {
-		return id_author;
+	public Usuario getId_user() {
+		return id_user;
 	}
 
-	public void setId_author(Author id_author) {
-		this.id_author = id_author;
+	public void setId_user(Usuario id_user) {
+		this.id_user = id_user;
 	}
 
 	public Book getId_book() {
@@ -62,12 +62,8 @@ public class Wrote {
 		this.id_book = id_book;
 	}
 
-	@Override
-	public String toString() {
-		return "Wrote [id=" + id + ", id_author=" + id_author + ", id_book=" + id_book + "]";
-	}
-
 	
+
 	
 	
 }

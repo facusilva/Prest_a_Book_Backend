@@ -7,11 +7,13 @@ DROP TABLE IF EXISTS author;
 DROP TABLE IF EXISTS wrote;
 DROP TABLE IF EXISTS wishes;
 DROP TABLE IF EXISTS loan;
+DROP TABLE IF EXISTS roles;
 
 CREATE TABLE users(
 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+id_roles INT NOT NULL,
 username VARCHAR(60) NOT NULL,
-psswd VARCHAR(40) NOT NULL, 
+psswd VARCHAR(100) NOT NULL, 
 email VARCHAR(60) NOT NULL,
 real_name VARCHAR(60) NOT NULL,
 surname VARCHAR(80),
@@ -73,9 +75,9 @@ FOREIGN KEY (id_author) REFERENCES author(id) ON DELETE CASCADE ON UPDATE CASCAD
 CREATE TABLE wishes(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 id_book INT NOT NULL,
-id_users INT NOT NULL,
+id_user INT NOT NULL,
 FOREIGN KEY (id_book) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (id_users) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE loan(
@@ -90,12 +92,16 @@ FOREIGN KEY (id_loaner) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 FOREIGN KEY (id_loanee) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE roles(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+role_name VARCHAR(50) NOT NULL
+);
 
 
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('albertojilo', 'A123456@','mailinventado1@gmail.com','Alberto','Jimenez','1990-04-30','H');
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('facusilva', 'F123456@','mailinventado2@gmail.com','Facundo','Silva','2000-01-01','H');
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('carloslafu', 'C123456@','mailinventado3@gmail.com','Carlos','Lafuente','2000-02-02','H');
-insert into users (username,psswd,email,real_name,surname,birth_date,gender) values('josemarin', 'J123456@','mailinventado4@gmail.com','Jose','Marin','2000-03-03','H');
+insert into users (id_roles,username,psswd,email,real_name,surname,birth_date,gender) values('1','albertojilo', '$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.','mailinventado1@gmail.com','Alberto','Jimenez','1990-04-30','H');
+insert into users (id_roles,username,psswd,email,real_name,surname,birth_date,gender) values('2','facusilva', 'F123456@','mailinventado2@gmail.com','Facundo','Silva','2000-01-01','H');
+insert into users (id_roles,username,psswd,email,real_name,surname,birth_date,gender) values('2','carloslafu', 'C123456@','mailinventado3@gmail.com','Carlos','Lafuente','2000-02-02','H');
+insert into users (id_roles,username,psswd,email,real_name,surname,birth_date,gender) values('3','josemarin', 'J123456@','mailinventado4@gmail.com','Jose','Marin','2000-03-03','H');
 
 insert into editorial (editorial_name,country,id_user) values('Anaya', 'Espana','1');
 insert into editorial (editorial_name,country,id_user) values('Planeta', 'Espana','2');
@@ -117,10 +123,10 @@ insert into book (ISBN,title,num_pages,genre,id_user,id_editorial,id_drawer) val
 insert into book (ISBN,title,num_pages,genre,id_user,id_editorial,id_drawer) values('9777777777777','Misery','600','Terror','3','2','M');
 insert into book (ISBN,title,num_pages,genre,id_user,id_editorial,id_drawer) values('9666666666666','Loba negra','800','Thriller','4','3','L');
 
-insert into wishes (id_book,id_users) values ('1','1');
-insert into wishes (id_book,id_users) values ('2','4');
-insert into wishes (id_book,id_users) values ('4','3');
-insert into wishes (id_book,id_users) values ('3','2');
+insert into wishes (id_book,id_user) values ('1','1');
+insert into wishes (id_book,id_user) values ('2','4');
+insert into wishes (id_book,id_user) values ('4','3');
+insert into wishes (id_book,id_user) values ('3','2');
 
 insert into author (author_name,surname,birth_date,nationality,descr,gender) values('Patrick','Rothfuss','1975-01-01','USA','Escritor de fantasía','H');
 insert into author (author_name,surname,birth_date,nationality,descr,gender) values('Stephen','King','1965-01-01','USA','Escritor de terror','H');
@@ -135,3 +141,8 @@ insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('1'
 insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('2','2','4','2022-11-04','2022-11-10');
 insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('3','4','3','2022-11-03','2022-11-07');
 insert into loan (id_book,id_loaner,id_loanee,starting_date,end_date) values('4','3','1','2022-11-02','2022-11-05');
+
+
+INSERT INTO roles (role_name) VALUES ('admin');
+INSERT INTO roles (role_name) VALUES ('colaborator');
+INSERT INTO roles (role_name) VALUES ('user');
