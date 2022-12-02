@@ -95,10 +95,5 @@ public class Editorial {
 
 	//To string personalizado
 	
-	@Override
-	public String toString() {
-		return "Editorial [id=" + id + ", editorial_name=" + editorial_name + ", country=" + country + ", id_user="
-				+ id_user + ", books=" + books + "]";
-	}
 	
 }

@@ -26,8 +26,8 @@ public class Role {
 	private String role_name;
 	
 	@OneToMany
-	@JoinColumn(name="id_roles")
-	private List<Role> role;
+	@JoinColumn(name="id_role")
+	private List<Usuario> usuarios;
 	
 	
 	//Constructores
@@ -35,11 +35,15 @@ public class Role {
 	public Role() {
 		
 	}
-	
-	public Role(Long id, String role_name) {
-		this.id=id;
-		this.role_name=role_name;
+
+	public Role(Long id, String role_name, List<Usuario> usuarios) {
+		super();
+		this.id = id;
+		this.role_name = role_name;
+		this.usuarios = usuarios;
 	}
+
+
 
 	//Setters y getters
 	
@@ -61,19 +65,21 @@ public class Role {
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Role")
-	public List<Role> getRole() {
-		return role;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_role")
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setRole(List<Role> role) {
-		this.role = role;
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", role_name=" + role_name + ", role=" + role + "]";
+		return "Role [id=" + id + ", role_name=" + role_name + ", usuarios=" + usuarios + "]";
 	}
+
+	
 
 
 	

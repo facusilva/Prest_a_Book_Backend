@@ -27,6 +27,7 @@ public class EditorialServiceImpl implements IEditorialService{
 
 	@Override
 	public Editorial leerEditorial(Long id) {
+		System.out.println("AQUÍ: "+id);
 		return iEditorialDAO.findById(id).get();
 	}
 

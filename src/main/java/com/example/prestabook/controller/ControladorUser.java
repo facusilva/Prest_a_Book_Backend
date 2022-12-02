@@ -79,7 +79,7 @@ public class ControladorUser {
 		user_seleccionado.setSurname(user.getSurname());
 		user_seleccionado.setBirth_date(user.getBirth_date());
 		user_seleccionado.setGender(user.getGender());
-		user_seleccionado.setRole(user.getRole());
+		user_seleccionado.setId_role(user.getId_role());
 		
 		user_actualizado = userServiceImpl.actualizarUser(user_seleccionado);
 		

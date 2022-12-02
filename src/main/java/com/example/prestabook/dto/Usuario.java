@@ -47,7 +47,7 @@ public class Usuario {
 
 	@ManyToOne
     @JoinColumn(name="id_role")
-    private Role role;
+    private Role id_role;
 	
 	@OneToMany
 	@JoinColumn(name="id_loaner")
@@ -64,7 +64,7 @@ public class Usuario {
 
 	public Usuario(Long id, String username, String psswd, String email, String real_name, String surname, Date birth_date,
 			String gender, List<Editorial> editorial, List<Book> books, List<Wishes> wishes, List<Loan> loaner,
-			List<Loan> loanee, Role role) {
+			List<Loan> loanee, Role id_role) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -79,7 +79,7 @@ public class Usuario {
 		this.wishes = wishes;
 		this.loaner = loaner;
 		this.loanee = loanee;
-		this.role = role;
+		this.id_role = id_role;
 
 	}
 
@@ -196,22 +196,13 @@ public class Usuario {
 	public void setLoanee(List<Loan> loanee) {
 		this.loanee = loanee;
 	}
-	
-	public Role getRole() {
-		return role;
+
+	public Role getId_role() {
+		return id_role;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	//To string personalizado
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", psswd=" + psswd + ", email=" + email + ", real_name="
-				+ real_name + ", surname=" + surname + ", birth_date=" + birth_date + ", gender=" + gender
-				+ ", editorial=" + editorial + ", books=" + books + ", wishes=" + wishes + ", loaner=" + loaner
-				+ ", loanee=" + loanee + "]";
+	public void setId_role(Role id_role) {
+		this.id_role = id_role;
 	}
 
 }
