@@ -21,7 +21,6 @@ public class Container {
 
 	//Atributos de la entidad Empleado
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String container_name;
 	
