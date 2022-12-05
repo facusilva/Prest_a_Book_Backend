@@ -62,7 +62,7 @@ public class ControladorUser {
 		
 	}
 	
-	@GetMapping("/users/{id}")
+	@GetMapping("/${users}/{id}")
 	public Usuario leerUser(@PathVariable(name="id") Long id) {
 		
 		Usuario user= new Usuario();
@@ -98,7 +98,7 @@ public class ControladorUser {
 		return user_actualizado;
 	}
 	
-	@GetMapping("/users/username/{username}")
+	@GetMapping("/users/${username}/{username}")
 	public Usuario getUsuario(@PathVariable(name="username") String username) {
 		return iUsuarioDAO.findByUsername(username);
 	}
