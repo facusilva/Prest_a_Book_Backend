@@ -19,15 +19,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.prestabook.dto.Usuario;
 import com.example.prestabook.service.UserServiceImpl;
+import com.example.prestabook.dao.IUsuarioDAO;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class ControladorUser {
 	
+	private IUsuarioDAO iUsuarioDAO;
+	
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	public ControladorUser(IUsuarioDAO iUsuarioDAO, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.iUsuarioDAO = iUsuarioDAO;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+	
 	@Autowired
 	UserServiceImpl userServiceImpl;
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	
 	@GetMapping("/users")
 	public List<Usuario> listarUsers(){
@@ -52,7 +62,7 @@ public class ControladorUser {
 		
 	}
 	
-	@GetMapping("/users/{id}")
+	/*@GetMapping("/users/{id}")
 	public Usuario leerUser(@PathVariable(name="id") Long id) {
 		
 		Usuario user= new Usuario();
@@ -62,7 +72,7 @@ public class ControladorUser {
 		System.out.println("User segun ID: "+user);
 		
 		return user;
-	}
+	}*/
 	
 	@PutMapping("/users/{id}")
 	public Usuario actualizarUser(@PathVariable(name="id")Long id,@RequestBody Usuario user) {
@@ -86,6 +96,11 @@ public class ControladorUser {
 		System.out.println("El user actualizado es: "+ user_actualizado);
 		
 		return user_actualizado;
+	}
+	
+	@GetMapping("/users/{username}")
+	public Usuario getUsuario(@PathVariable String username) {
+		return iUsuarioDAO.findByUsername(username);
 	}
 	
 	@DeleteMapping("/users/{id}")
