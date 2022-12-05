@@ -62,7 +62,7 @@ public class ControladorUser {
 		
 	}
 	
-	/*@GetMapping("/users/{id}")
+	@GetMapping("/users/{id}")
 	public Usuario leerUser(@PathVariable(name="id") Long id) {
 		
 		Usuario user= new Usuario();
@@ -72,7 +72,7 @@ public class ControladorUser {
 		System.out.println("User segun ID: "+user);
 		
 		return user;
-	}*/
+	}
 	
 	@PutMapping("/users/{id}")
 	public Usuario actualizarUser(@PathVariable(name="id")Long id,@RequestBody Usuario user) {
@@ -98,7 +98,7 @@ public class ControladorUser {
 		return user_actualizado;
 	}
 	
-	@GetMapping("/users/{username}")
+	@GetMapping("/users/username/{username}")
 	public Usuario getUsuario(@PathVariable String username) {
 		return iUsuarioDAO.findByUsername(username);
 	}
