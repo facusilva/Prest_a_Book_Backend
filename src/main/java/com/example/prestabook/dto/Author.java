@@ -3,6 +3,7 @@ package com.example.prestabook.dto;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class Author {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(name="author_name")
 	private String name;
 	private String surname;
 	private Date birth_date;
@@ -117,11 +119,7 @@ public class Author {
 		this.wrote = wrote;
 	}
 
-	@Override
-	public String toString() {
-		return "Author [id=" + id + ", name=" + name + ", surname=" + surname + ", birth_date=" + birth_date
-				+ ", nationality=" + nationality + ", descr=" + descr + ", gender=" + gender + "]";
-	}
+
 	
 	
 

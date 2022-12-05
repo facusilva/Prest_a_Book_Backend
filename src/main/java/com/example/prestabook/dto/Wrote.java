@@ -62,11 +62,6 @@ public class Wrote {
 		this.id_book = id_book;
 	}
 
-	@Override
-	public String toString() {
-		return "Wrote [id=" + id + ", id_author=" + id_author + ", id_book=" + id_book + "]";
-	}
-
 	
 	
 	
