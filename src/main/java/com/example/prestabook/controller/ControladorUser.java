@@ -62,7 +62,7 @@ public class ControladorUser {
 		
 	}
 	
-	@GetMapping("/users1/{id}")
+	@GetMapping("/users/{id}")
 	public Usuario leerUser(@PathVariable(name="id") Long id) {
 		
 		Usuario user= new Usuario();
