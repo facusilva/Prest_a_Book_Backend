@@ -99,9 +99,10 @@ public class ControladorUser {
 	}
 	
 	@GetMapping("/users/username/{username}")
-	public Usuario getUsuario(@PathVariable String username) {
+	public Usuario getUsuario(@PathVariable(name="username") String username) {
 		return iUsuarioDAO.findByUsername(username);
 	}
+	
 	
 	@DeleteMapping("/users/{id}")
 	public void borrarUser(@PathVariable(name="id")Long id) {
