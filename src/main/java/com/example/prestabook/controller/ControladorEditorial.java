@@ -22,12 +22,12 @@ public class ControladorEditorial {
 	@Autowired
 	EditorialServiceImpl editorialServiceImpl;
 	
-	@GetMapping("/editorials")
+	@GetMapping("/editoriales")
 	public List<Editorial> listarEditoriales(){
 		return editorialServiceImpl.listarEditoriales();
 	}
 	
-	@PostMapping("/editorials")
+	@PostMapping("/editoriales")
 	public Editorial crearEditorial(@RequestBody Editorial editorial) {
 		
 		return editorialServiceImpl.crearEditorial(editorial);
@@ -35,7 +35,7 @@ public class ControladorEditorial {
 	}
 	
 	
-	@GetMapping("/editorials/{id}")
+	@GetMapping("/editoriales/{id}")
 	public Editorial leerEditorial(@PathVariable(name="id") Long id) {
 		
 		Editorial editorial= new Editorial();
@@ -47,7 +47,7 @@ public class ControladorEditorial {
 		return editorial;
 	}
 	
-	@PutMapping("/editorials/{id}")
+	@PutMapping("/editoriales/{id}")
 	public Editorial actualizarEditorial(@PathVariable(name="id")Long id,@RequestBody Editorial editorial) {
 		
 		Editorial editorial_seleccionado= new Editorial();
@@ -67,7 +67,7 @@ public class ControladorEditorial {
 		return editorial_actualizado;
 	}
 	
-	@DeleteMapping("/editorials/{id}")
+	@DeleteMapping("/editoriales/{id}")
 	public void borrarEditorial(@PathVariable(name="id")Long id) {
 		editorialServiceImpl.borrarEditorial(id);
 	}
