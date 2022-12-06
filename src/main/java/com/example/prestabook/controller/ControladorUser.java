@@ -19,15 +19,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.prestabook.dto.Usuario;
 import com.example.prestabook.service.UserServiceImpl;
+import com.example.prestabook.dao.IUsuarioDAO;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class ControladorUser {
 	
+	private IUsuarioDAO iUsuarioDAO;
+	
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	public ControladorUser(IUsuarioDAO iUsuarioDAO, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.iUsuarioDAO = iUsuarioDAO;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+	
 	@Autowired
 	UserServiceImpl userServiceImpl;
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	
 	@GetMapping("/users")
 	public List<Usuario> listarUsers(){
@@ -87,6 +97,12 @@ public class ControladorUser {
 		
 		return user_actualizado;
 	}
+	
+	@GetMapping("/users/username/{username}")
+	public Usuario getUsuario(@PathVariable(name="username") String username) {
+		return iUsuarioDAO.findByUsername(username);
+	}
+	
 	
 	@DeleteMapping("/users/{id}")
 	public void borrarUser(@PathVariable(name="id")Long id) {
