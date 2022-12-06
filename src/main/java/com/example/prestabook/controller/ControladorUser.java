@@ -44,15 +44,9 @@ public class ControladorUser {
 		return userServiceImpl.listarUsers();
 	}
 	
-	@GetMapping("/response-entity-builder-with-http-headers")
-	public ResponseEntity<String> usingResponseEntityBuilderAndHttpHeaders() {
-	    HttpHeaders responseHeaders = new HttpHeaders();
-	    responseHeaders.set("Baeldung-Example-Header", 
-	      "Value-ResponseEntityBuilderWithHttpHeaders");
-
-	    return ResponseEntity.ok()
-	      .headers(responseHeaders)
-	      .body("Response with header using ResponseEntity");
+	@GetMapping("/users/username/{username}")
+	public Usuario getUsuario(@PathVariable String username) {
+		return iUsuarioDAO.findByUsername(username);
 	}
 	
 	@PostMapping("/users")
@@ -96,11 +90,6 @@ public class ControladorUser {
 		System.out.println("El user actualizado es: "+ user_actualizado);
 		
 		return user_actualizado;
-	}
-	
-	@GetMapping("/users/username/{username}")
-	public Usuario getUsuario(@PathVariable(name="username") String username) {
-		return iUsuarioDAO.findByUsername(username);
 	}
 	
 	
