@@ -1,6 +1,8 @@
 package com.example.prestabook.security;
 
 import static com.example.prestabook.security.Constants.LOGIN_URL;
+import static com.example.prestabook.security.Constants.REGISTER_URL;
+import static com.example.prestabook.security.Constants.BOOKS_URL;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +46,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().formLogin().permitAll().and() //.and().formLogin().permitAll()
 			.cors().and()
 			.csrf().disable()
-			.authorizeRequests().antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
+			.authorizeRequests()
+			.antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
+			.antMatchers(HttpMethod.POST, REGISTER_URL).permitAll()
+			.antMatchers(HttpMethod.GET, BOOKS_URL).permitAll()
 			.anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager()));
