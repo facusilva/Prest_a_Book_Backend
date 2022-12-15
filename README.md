@@ -1,32 +1,60 @@
-# Prest_a_Book_Backend
+## Prest_a_Book_Backend
 
-Endpoints:
+# Endpoints:
 
 
-POST 	prestabookbackend-production.up.railway.app/login
+LOGIN
 
-GET 	prestabookbackend-production.up.railway.app/api/authors
-	    prestabookbackend-production.up.railway.app/api/authors/name
-	    prestabookbackend-production.up.railway.app/api/authors/surname
+* prestabookbackend-production.up.railway.app/login
 
-GET	  prestabookbackend-production.up.railway.app/api/wrote
+AUTORES
 
-GET	  prestabookbackend-production.up.railway.app/api/books
-    	prestabookbackend-production.up.railway.app/api/books/title
-	    prestabookbackend-production.up.railway.app/api/books/isbn
+* prestabookbackend-production.up.railway.app/api/authors
 
-GET	  prestabookbackend-production.up.railway.app/api/drawers
+* prestabookbackend-production.up.railway.app/api/authors/name
 
-GET 	prestabookbackend-production.up.railway.app/api/containers
+* prestabookbackend-production.up.railway.app/api/authors/surname
+
+ESCRITO
+
+* prestabookbackend-production.up.railway.app/api/wrote
+
+LIBROS	  
+
+* prestabookbackend-production.up.railway.app/api/books
+
+* prestabookbackend-production.up.railway.app/api/books/title
+
+* prestabookbackend-production.up.railway.app/api/books/isbn
+
+CAJONES 
+
+* prestabookbackend-production.up.railway.app/api/drawers
+
+ARMARIOS
+
+* prestabookbackend-production.up.railway.app/api/containers
 	
-GET 	prestabookbackend-production.up.railway.app/api/editorials/
-    	prestabookbackend-production.up.railway.app/api/editorials/name/
+EDITORIALES
 
-GET 	prestabookbackend-production.up.railway.app/api/wishes
+* prestabookbackend-production.up.railway.app/api/editorials/
 
-GET	  prestabookbackend-production.up.railway.app/api/loan
+* prestabookbackend-production.up.railway.app/api/editorials/name/
 
-GET	  prestabookbackend-production.up.railway.app/api/users
-	    prestabookbackend-production.up.railway.app/api/users/username
+DESEOS
 
-GET 	prestabookbackend-production.up.railway.app/api/roles
+* prestabookbackend-production.up.railway.app/api/wishes
+
+PRÉSTAMOS 
+
+* prestabookbackend-production.up.railway.app/api/loan
+
+USUARIOS
+
+* prestabookbackend-production.up.railway.app/api/users
+
+* prestabookbackend-production.up.railway.app/api/users/username
+
+ROLES
+
+* prestabookbackend-production.up.railway.app/api/roles
