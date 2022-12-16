@@ -55,6 +55,10 @@ USUARIOS
 
 * prestabookbackend-production.up.railway.app/api/users/username
 
+WROTE
+
+* prestabookbackend-production.up.railway.app/api/wrote/book
+
 ROLES
 
 * prestabookbackend-production.up.railway.app/api/roles
