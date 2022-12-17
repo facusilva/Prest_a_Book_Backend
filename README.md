@@ -27,6 +27,8 @@ LIBROS
 
 * prestabookbackend-production.up.railway.app/api/books/isbn
 
+* prestabookbackend-production.up.railway.app/api/books/user
+
 CAJONES 
 
 * prestabookbackend-production.up.railway.app/api/drawers
@@ -45,9 +47,13 @@ DESEOS
 
 * prestabookbackend-production.up.railway.app/api/wishes
 
+* prestabookbackend-production.up.railway.app/api/wishes/user/
+
 PRÉSTAMOS 
 
 * prestabookbackend-production.up.railway.app/api/loan
+
+* prestabookbackend-production.up.railway.app/api/loan/loanee/
 
 USUARIOS
 
@@ -56,6 +62,8 @@ USUARIOS
 * prestabookbackend-production.up.railway.app/api/users/username
 
 WROTE
+
+* prestabookbackend-production.up.railway.app/api/wrote/
 
 * prestabookbackend-production.up.railway.app/api/wrote/book
 
