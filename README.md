@@ -49,11 +49,15 @@ DESEOS
 
 * prestabookbackend-production.up.railway.app/api/wishes/user/
 
+* prestabookbackend-production.up.railway.app/api/wishes/byuserandbook/{id_user}/{id_book}
+
 PRÉSTAMOS 
 
 * prestabookbackend-production.up.railway.app/api/loan
 
 * prestabookbackend-production.up.railway.app/api/loan/loanee/
+
+* prestabookbackend-production.up.railway.app/api/loan/byloaneeandbook/{id_user}/{id_book}
 
 USUARIOS
 
