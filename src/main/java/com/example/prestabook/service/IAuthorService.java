@@ -10,11 +10,11 @@ public interface IAuthorService {
 	
 	public List<Author> listarAuthors(); //Listar All 
 	
-	public Author crearAuthor(Author user);	//CREATE
+	public Author crearAuthor(Author author);	//CREATE
 	
 	public Author leerAuthor(Long id); // READ
 		
-	public Author actualizarAuthor(Author user); // UPDATE
+	public Author actualizarAuthor(Author author); // UPDATE
 	
 	public void borrarAuthor(Long id);// DELETE
 	

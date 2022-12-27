@@ -21,8 +21,8 @@ public class AuthorServiceImpl implements IAuthorService{
 	}
 	
 	@Override
-	public Author crearAuthor(Author user) {
-		return iAuthorDAO.save(user);
+	public Author crearAuthor(Author author) {
+		return iAuthorDAO.save(author);
 	}
 
 	@Override
@@ -30,10 +30,9 @@ public class AuthorServiceImpl implements IAuthorService{
 		return iAuthorDAO.findById(id).get();
 	}
 
-
 	@Override
-	public Author actualizarAuthor(Author user) {
-		return iAuthorDAO.save(user);
+	public Author actualizarAuthor(Author author) {
+		return iAuthorDAO.save(author);
 	}
 
 	@Override

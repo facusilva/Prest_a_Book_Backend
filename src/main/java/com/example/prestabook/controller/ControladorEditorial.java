@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.prestabook.dao.IEditorialDAO;
 import com.example.prestabook.dto.Editorial;
 import com.example.prestabook.service.EditorialServiceImpl;
 
@@ -19,23 +20,32 @@ import com.example.prestabook.service.EditorialServiceImpl;
 @RequestMapping("/api")
 public class ControladorEditorial {
 	
+	private IEditorialDAO iEditorialDAO;
+	
+	public ControladorEditorial(IEditorialDAO iEditorialDAO) {
+		this.iEditorialDAO = iEditorialDAO;
+	}
+	
 	@Autowired
 	EditorialServiceImpl editorialServiceImpl;
 	
-	@GetMapping("/editoriales")
+	@GetMapping("/editorials")
 	public List<Editorial> listarEditoriales(){
 		return editorialServiceImpl.listarEditoriales();
 	}
 	
-	@PostMapping("/editoriales")
+	@PostMapping("/editorials")
 	public Editorial crearEditorial(@RequestBody Editorial editorial) {
 		
 		return editorialServiceImpl.crearEditorial(editorial);
 		
 	}
+	@GetMapping("/editorials/name/{name}")
+	public Editorial getEditorialByName(@PathVariable String name) {
+		return iEditorialDAO.findByName(name);
+	}
 	
-	
-	@GetMapping("/editoriales/{id}")
+	@GetMapping("/editorials/{id}")
 	public Editorial leerEditorial(@PathVariable(name="id") Long id) {
 		
 		Editorial editorial= new Editorial();
@@ -47,7 +57,7 @@ public class ControladorEditorial {
 		return editorial;
 	}
 	
-	@PutMapping("/editoriales/{id}")
+	@PutMapping("/editorials/{id}")
 	public Editorial actualizarEditorial(@PathVariable(name="id")Long id,@RequestBody Editorial editorial) {
 		
 		Editorial editorial_seleccionado= new Editorial();
@@ -67,7 +77,7 @@ public class ControladorEditorial {
 		return editorial_actualizado;
 	}
 	
-	@DeleteMapping("/editoriales/{id}")
+	@DeleteMapping("/editorials/{id}")
 	public void borrarEditorial(@PathVariable(name="id")Long id) {
 		editorialServiceImpl.borrarEditorial(id);
 	}

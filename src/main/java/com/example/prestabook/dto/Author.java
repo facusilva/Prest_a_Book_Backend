@@ -34,7 +34,7 @@ public class Author {
 	private String gender;
 	
 	@OneToMany
-	@JoinColumn(name="id_author")
+	@JoinColumn(name="id")
 	private List<Wrote> wrote;
 	
 	//Constructores

@@ -26,7 +26,7 @@ public class Role {
 	private String role_name;
 	
 	@OneToMany
-	@JoinColumn(name="id_role")
+	@JoinColumn(name="id")
 	private List<Usuario> usuarios;
 	
 	

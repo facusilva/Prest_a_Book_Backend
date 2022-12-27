@@ -2,7 +2,9 @@ package com.example.prestabook.service;
 
 import java.util.List;
 
+
 import com.example.prestabook.dto.Book;
+import com.example.prestabook.dto.Usuario;
 
 public interface IBookService {
 
@@ -17,4 +19,6 @@ public interface IBookService {
 	public Book actualizarBook(Book Book); //Actualiza datos del Book UPDATE
 	
 	public void borrarBook(Long id);//Elimina el Book DELETE
+	
+	public List<Book> leerBookByUser(Usuario usuario);
 }

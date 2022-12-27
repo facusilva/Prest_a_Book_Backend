@@ -25,7 +25,7 @@ public class Container {
 	private String container_name;
 	
 	@OneToMany
-	@JoinColumn(name="id_container")
+	@JoinColumn(name="id")
 	private List<Drawer> drawer;
 	
 	

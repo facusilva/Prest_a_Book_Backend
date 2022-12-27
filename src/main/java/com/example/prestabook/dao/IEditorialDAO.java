@@ -8,5 +8,5 @@ import com.example.prestabook.dto.Editorial;
 
 public interface IEditorialDAO extends JpaRepository<Editorial, Long>{
 	
-	
+	Editorial findByName(String name);
 }

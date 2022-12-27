@@ -12,15 +12,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.prestabook.dao.IBookDAO;
+import com.example.prestabook.dao.IWroteDAO;
+import com.example.prestabook.dto.Book;
 import com.example.prestabook.dto.Wrote;
+import com.example.prestabook.service.BookServiceImpl;
 import com.example.prestabook.service.WroteServiceImpl;
 
 @RestController
 @RequestMapping("/api")
 public class ControladorWrote {
 	
+	private IWroteDAO iWroteDAO;
+	
+	public ControladorWrote(IWroteDAO iWroteDAO, IBookDAO iBookDAO) {
+		this.iWroteDAO = iWroteDAO;
+	}
+	
 	@Autowired
 	WroteServiceImpl wroteServiceImpl;
+	
+	@Autowired
+	BookServiceImpl bookServiceImpl;
 	
 	@GetMapping("/wrote")
 	public List<Wrote> listarWrotes(){
@@ -31,6 +44,12 @@ public class ControladorWrote {
 	public Wrote crearWrote(@RequestBody Wrote wrote) {
 		return wroteServiceImpl.crearWrote(wrote);
 	}
+	
+	@GetMapping("/wrote/book/{id_book}")
+    public Wrote getWroteByBook(@PathVariable Long id_book) {
+        Book book = bookServiceImpl.leerBook(id_book);
+        return wroteServiceImpl.leerWroteByBook(book);
+    }
 	
 	@GetMapping("/wrote/{id}")
 	public Wrote leerWrote(@PathVariable(name="id") Long id) {
@@ -53,7 +72,7 @@ public class ControladorWrote {
 		wrote_seleccionado= wroteServiceImpl.leerWrote(id);
 
 		wrote_seleccionado.setId_author(wrote.getId_author());
-		wrote_seleccionado.setId_book(wrote.getId_book());
+		wrote_seleccionado.setBook(wrote.getBook());
 		
 		wrote_actualizado = wroteServiceImpl.actualizarWrote(wrote_seleccionado);
 		

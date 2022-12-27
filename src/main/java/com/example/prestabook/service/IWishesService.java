@@ -2,6 +2,8 @@ package com.example.prestabook.service;
 
 import java.util.List;
 
+import com.example.prestabook.dto.Book;
+import com.example.prestabook.dto.Usuario;
 import com.example.prestabook.dto.Wishes;
 
 public interface IWishesService {
@@ -18,5 +20,7 @@ public interface IWishesService {
 	
 	public void borrarWishes(Long id);// DELETE
 	
+	public List<Wishes> leerBookByUser(Usuario usuario);
 	
+	public Wishes leerWishByUserBook(Usuario usuario, Book book);
 }

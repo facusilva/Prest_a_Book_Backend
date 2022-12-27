@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.prestabook.dao.ILoanDAO;
+import com.example.prestabook.dto.Book;
 import com.example.prestabook.dto.Loan;
+import com.example.prestabook.dto.Usuario;
 
 @Service
 public class LoanServiceImpl implements ILoanService{
@@ -39,5 +41,18 @@ public class LoanServiceImpl implements ILoanService{
 	public void borrarLoan(Long id) {
 		iLoanDAO.deleteById(id);
 	}
+
+	@Override
+	public List<Loan> leerLoanByLoanee(Usuario loanee) {
+		return iLoanDAO.findByLoanee(loanee);
+	}
+	
+	public List<Loan> leerLoanByLoaner(Usuario loaner) {
+		return iLoanDAO.findByLoaner(loaner);
+	}
+	
+	public Loan leerLoanByLoaneeBook(Usuario usuario, Book book) {
+        return iLoanDAO.findByLoaneeAndBook(usuario, book);
+    }
 
 }

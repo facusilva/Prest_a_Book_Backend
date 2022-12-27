@@ -2,6 +2,7 @@ package com.example.prestabook.service;
 
 import java.util.List;
 
+import com.example.prestabook.dto.Book;
 import com.example.prestabook.dto.Wrote;
 
 public interface IWroteService {
@@ -18,5 +19,5 @@ public interface IWroteService {
 	
 	public void borrarWrote(Long id);// DELETE
 	
-	
+	public Wrote leerWroteByBook(Book book);
 }

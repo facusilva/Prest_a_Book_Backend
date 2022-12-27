@@ -2,6 +2,7 @@ package com.example.prestabook.dto;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,8 @@ public class Editorial {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String editorial_name;
+	@Column(name="editorial_name")
+	private String name;
 	private String country;
 	
 	@ManyToOne
@@ -32,7 +34,7 @@ public class Editorial {
 	private Usuario id_user;
 	
 	@OneToMany
-	@JoinColumn(name="id_editorial")
+	@JoinColumn(name="id")
 	private List<Book> books;
 	
 	//Constructores
@@ -41,9 +43,9 @@ public class Editorial {
 		
 	}
 	
-	public Editorial(Long id, String editorial_name, String country, Usuario id_user, List<Book> books) {
+	public Editorial(Long id, String name, String country, Usuario id_user, List<Book> books) {
 		this.id = id;
-		this.editorial_name = editorial_name;
+		this.name = name;
 		this.country = country;
 		this.id_user = id_user;
 		this.books = books;
@@ -60,11 +62,11 @@ public class Editorial {
 	}
 
 	public String getEditorial_name() {
-		return editorial_name;
+		return name;
 	}
 
-	public void setEditorial_name(String editorial_name) {
-		this.editorial_name = editorial_name;
+	public void setEditorial_name(String name) {
+		this.name = name;
 	}
 
 	public String getCountry() {

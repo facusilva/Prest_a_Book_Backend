@@ -11,7 +11,7 @@ import com.example.prestabook.dto.Usuario;
 @Service
 public class UserServiceImpl implements IUserService{
 	
-	//Utilizamos los metodos de la interface IUserDAO, es como si instanciaramos.
+	//Utilizamos los metodos de la interface IUsuarioDAO, es como si instanciaramos.
 	@Autowired
 	IUsuarioDAO iUserDAO;
 	

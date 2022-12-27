@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.prestabook.dao.IBookDAO;
 import com.example.prestabook.dto.Book;
+import com.example.prestabook.dto.Usuario;
+import com.example.prestabook.dto.Wrote;
 
 @Service
 public class BookServiceImpl implements IBookService{
@@ -39,5 +41,9 @@ public class BookServiceImpl implements IBookService{
 	public void borrarBook(Long id) {
 		iBookDAO.deleteById(id);
 	}
+	
+	public List<Book> leerBookByUser(Usuario usuario) {
+        return iBookDAO.findByUsuario(usuario);
+    }
 
 }

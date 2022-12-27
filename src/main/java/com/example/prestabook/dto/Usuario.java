@@ -34,15 +34,15 @@ public class Usuario {
 	private String gender;
 	
 	@OneToMany
-	@JoinColumn(name="id_user")
+	@JoinColumn(name="id")
 	private List<Editorial> editorial;
 	
 	@OneToMany
-	@JoinColumn(name="id_user")
+	@JoinColumn(name="id")
 	private List<Book> books;
 	
 	@OneToMany
-	@JoinColumn(name="id_user")
+	@JoinColumn(name="id")
 	private List<Wishes> wishes;
 
 	@ManyToOne
@@ -50,11 +50,11 @@ public class Usuario {
     private Role id_role;
 	
 	@OneToMany
-	@JoinColumn(name="id_loaner")
+	@JoinColumn(name="id")
 	private List<Loan> loaner;
 	
 	@OneToMany
-	@JoinColumn(name="id_loaner")
+	@JoinColumn(name="id")
 	private List<Loan> loanee;
 	
 	//Constructores

@@ -12,12 +12,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.prestabook.dao.IAuthorDAO;
 import com.example.prestabook.dto.Author;
 import com.example.prestabook.service.AuthorServiceImpl;
 
 @RestController
 @RequestMapping("/api")
 public class ControladorAuthor {
+	
+	private IAuthorDAO iAuthorDAO;
+	
+	public ControladorAuthor(IAuthorDAO iAuthorDAO) {
+		this.iAuthorDAO = iAuthorDAO;
+	}
 	
 	@Autowired
 	AuthorServiceImpl authorServiceImpl;
@@ -42,6 +49,16 @@ public class ControladorAuthor {
 		System.out.println("Author segun ID: "+author);
 		
 		return author;
+	}
+	
+	@GetMapping("/authors/name/{name}")
+	public Author getAuthor(@PathVariable String name) {
+		return iAuthorDAO.findByName(name);
+	}
+	
+	@GetMapping("/authors/surname/{surname}")
+	public Author getAuthorSurname(@PathVariable String surname) {
+		return iAuthorDAO.findBySurname(surname);
 	}
 	
 	@PutMapping("/authors/{id}")

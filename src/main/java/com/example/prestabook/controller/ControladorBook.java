@@ -12,15 +12,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.prestabook.dao.IBookDAO;
+import com.example.prestabook.dao.IUsuarioDAO;
 import com.example.prestabook.dto.Book;
+import com.example.prestabook.dto.Usuario;
 import com.example.prestabook.service.BookServiceImpl;
+import com.example.prestabook.service.UserServiceImpl;
 
 @RestController
 @RequestMapping("/api")
 public class ControladorBook {
 	
+	private IBookDAO iBookDAO;
+	private IUsuarioDAO iUsuarioDAO;
+	
+	public ControladorBook(IBookDAO iBookDAO, IUsuarioDAO iUsuarioDAO) {
+		this.iBookDAO = iBookDAO;
+		this.iUsuarioDAO = iUsuarioDAO;
+	}
+	
 	@Autowired
 	BookServiceImpl bookServiceImpl;
+	
+	@Autowired
+	UserServiceImpl userServiceImpl;
 	
 	@GetMapping("/books")
 	public List<Book> listarBooks(){
@@ -29,10 +44,24 @@ public class ControladorBook {
 	
 	@PostMapping("/books")
 	public Book crearBook(@RequestBody Book book) {
-		
 		return bookServiceImpl.crearBook(book);
-		
 	}
+	
+	@GetMapping("/books/title/{title}")
+	public Book getBookByName(@PathVariable String title) {
+		return iBookDAO.findByTitle(title);
+	}
+	
+	@GetMapping("/books/isbn/{isbn}")
+	public Book getBookByIsbn(@PathVariable String isbn) {
+		return iBookDAO.findByIsbn(isbn);
+	}
+	
+	@GetMapping("/books/user/{id_user}")
+    public List<Book> getBookByUser(@PathVariable Long id_user) {
+        Usuario usuario = userServiceImpl.leerUser(id_user);
+        return bookServiceImpl.leerBookByUser(usuario);
+    }
 	
 	@GetMapping("/books/{id}")
 	public Book leerBook(@PathVariable(name="id") Long id) {
@@ -58,6 +87,8 @@ public class ControladorBook {
 		book_seleccionado.setTitle(book.getTitle());
 		book_seleccionado.setNum_pages(book.getNum_pages());
 		book_seleccionado.setGenre(book.getGenre());
+		book_seleccionado.setImg(book.getImg());
+		book_seleccionado.setDescription(book.getDescription());
 		book_seleccionado.setId_drawer(book.getId_drawer());
 		book_seleccionado.setId_user(book.getId_user());
 		book_seleccionado.setId_editorial(book.getId_editorial());

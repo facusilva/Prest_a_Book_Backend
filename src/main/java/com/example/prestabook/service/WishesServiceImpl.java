@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.prestabook.dao.IWishesDAO;
+import com.example.prestabook.dto.Book;
+import com.example.prestabook.dto.Usuario;
 import com.example.prestabook.dto.Wishes;
 
 @Service
@@ -40,5 +42,14 @@ public class WishesServiceImpl implements IWishesService{
 	public void borrarWishes(Long id) {
 		iWishesDAO.deleteById(id);
 	}
+	
+	public List<Wishes> leerBookByUser(Usuario usuario) {
+        return iWishesDAO.findByUsuario(usuario);
+    }
+	
+	public Wishes leerWishByUserBook(Usuario usuario, Book book) {
+        return iWishesDAO.findByUsuarioAndBook(usuario, book);
+    }
+
 
 }

@@ -22,32 +22,33 @@ public class Loan {
 	
 	@ManyToOne
 	@JoinColumn(name="id_book")
-	private Book id_book;
+	private Book book;
 	
 	@ManyToOne
 	@JoinColumn(name="id_loaner")
-	private Usuario id_loaner;
+	private Usuario loaner;
 	
 	@ManyToOne
 	@JoinColumn(name="id_loanee")
-	private Usuario id_loanee;
+	private Usuario loanee;
 	
 	private Date starting_date;
 	private Date end_date;
-	
+	private Boolean active;
 
 	//Constructores
 	public Loan() {
 		
 	}
 
-	public Loan(Long id, Book id_book, Usuario id_loaner, Usuario id_loanee, Date starting_date, Date end_date) {
+	public Loan(Long id, Book book, Usuario loaner, Usuario loanee, Date starting_date, Date end_date, Boolean active) {
 		this.id = id;
-		this.id_book = id_book;
-		this.id_loaner = id_loaner;
-		this.id_loanee = id_loanee;
+		this.book = book;
+		this.loaner = loaner;
+		this.loanee = loanee;
 		this.starting_date = starting_date;
 		this.end_date = end_date;
+		this.active = active;
 	}
 
 	//getters y setters
@@ -60,27 +61,27 @@ public class Loan {
 	}
 
 	public Book getId_book() {
-		return id_book;
+		return book;
 	}
 
-	public void setId_book(Book id_book) {
-		this.id_book = id_book;
+	public void setId_book(Book book) {
+		this.book = book;
 	}
 
 	public Usuario getId_loaner() {
-		return id_loaner;
+		return loaner;
 	}
 
-	public void setId_loaner(Usuario id_loaner) {
-		this.id_loaner = id_loaner;
+	public void setId_loaner(Usuario loaner) {
+		this.loaner = loaner;
 	}
 
 	public Usuario getId_loanee() {
-		return id_loanee;
+		return loanee;
 	}
 
-	public void setId_loanee(Usuario id_loanee) {
-		this.id_loanee = id_loanee;
+	public void setId_loanee(Usuario loanee) {
+		this.loanee = loanee;
 	}
 
 	public Date getStarting_date() {
@@ -99,14 +100,13 @@ public class Loan {
 		this.end_date = end_date;
 	}
 
-	@Override
-	public String toString() {
-		return "Loan [id=" + id + ", id_book=" + id_book + ", id_loaner=" + id_loaner + ", id_loanee=" + id_loanee
-				+ ", starting_date=" + starting_date + ", end_date=" + end_date + "]";
+	public Boolean getActive() {
+		return active;
 	}
 
-	
-	
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 	
 	
 }

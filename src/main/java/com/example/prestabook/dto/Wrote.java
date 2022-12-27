@@ -24,17 +24,17 @@ public class Wrote {
 	
 	@ManyToOne
 	@JoinColumn(name="id_book")
-	private Book id_book;
+	private Book book;
 	
 	//Constructores
 	public Wrote() {
 		
 	}
 
-	public Wrote(Long id, Author id_author, Book id_book) {
+	public Wrote(Long id, Author id_author, Book book) {
 		this.id = id;
 		this.id_author = id_author;
-		this.id_book = id_book;
+		this.book = book;
 	}
 
 	//getters y setters
@@ -54,12 +54,12 @@ public class Wrote {
 		this.id_author = id_author;
 	}
 
-	public Book getId_book() {
-		return id_book;
+	public Book getBook() {
+		return book;
 	}
 
-	public void setId_book(Book id_book) {
-		this.id_book = id_book;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	
